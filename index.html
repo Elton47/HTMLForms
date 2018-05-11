@@ -24,7 +24,21 @@
     <main>
       <div class="main-content">
         <form>
-          
+          <div class="fields-wrapper">
+            <div class="input-wrapper">
+              <label>URL</label>
+              <input type="url" autofocus required pattern="https?://.+" title="https://domain.TLD" />
+            </div>
+            <div class="input-wrapper">
+              <label>Number</label>
+              <input type="number" required min="0" max="999" />
+            </div>
+            <div class="input-wrapper">
+              <label>Range</label>
+              <input type="range" required min="1" max="100" value="25" />
+            </div>
+          </div>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </main>
