@@ -4,6 +4,7 @@
     <title>HTMLForms</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./css/style.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="./js/jquery-3.3.1.min.js"></script>
     <script src="./js/script.js"></script>
   </head>
@@ -23,22 +24,27 @@
     </header>
     <main>
       <div class="main-content">
-        <form>
-          <div class="fields-wrapper">
-            <div class="input-wrapper">
-              <label>URL</label>
-              <input type="url" autofocus required pattern="https?://.+" title="https://domain.TLD" />
-            </div>
-            <div class="input-wrapper">
-              <label>Number</label>
-              <input type="number" required min="0" max="999" />
-            </div>
-            <div class="input-wrapper">
-              <label>Range</label>
-              <input type="range" required min="1" max="100" value="25" />
-            </div>
+        <form id="first-form" class="card">
+          <div class="form-header">
+            <button id="clear-form-button" class="fab"><i class="material-icons">clear_all</i></button>
           </div>
-          <button type="submit">Submit</button>
+          <div class="form-content">
+            <div class="fields-wrapper">
+              <div class="input-wrapper">
+                <label>URL</label>
+                <input type="url" autofocus required pattern="https?://.+" title="https://domain.TLD" />
+              </div>
+              <div class="input-wrapper">
+                <label>Number</label>
+                <input type="number" required min="0" max="999" />
+              </div>
+              <div class="input-wrapper">
+                <label>Range</label>
+                <input type="range" required min="1" max="100" value="25" />
+              </div>
+            </div>
+            <button type="submit" class="fab"><i class="material-icons">check</i>&nbsp;Submit</button>
+          </div>
         </form>
       </div>
     </main>
