@@ -59,13 +59,15 @@ main {
       display: flex;
       flex-direction: column;
       >div.form-header {
-        min-height: 8em;
+        height: 8em;
         display: flex;
         box-shadow: $dp1;
         border-radius: 10px;
+        background-color: $accent-color;
         div.clear-form-button-wrapper {
-          margin: auto 0 0 3em;
-          transform: translateY(28px);
+          position: absolute;
+          bottom: -28px;
+          left: 2em;
           z-index: 200;
         }
       }
@@ -198,12 +200,21 @@ button {
   }
 }
 @media (max-width: "720px") {
-  main {
-    >.main-content {
-      >form {
-        width: 100%;
-        div.input-wrapper {
-          width: 100% !important;
+  body { /* Adding "body" for more precedence of priority. */
+    main {
+      >.main-content {
+        >form {
+          width: 100%;
+          >div.form-header {
+            height: 6em;
+          }
+          >div.form-content {
+            >div.fields-wrapper {
+              >div.input-wrapper {
+                width: 100%;
+              }
+            }
+          }
         }
       }
     }
