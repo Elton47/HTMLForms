@@ -41,30 +41,96 @@ header {
 }
 main {
   flex: 1;
-  display: inherit;
+  display: flex;
   box-shadow: $dp1;
   min-height: fit-content;
   >.main-content {
     flex: 1;
     background-color: $background-color;
-    display: inherit;
-    padding: 4em 0;
+    display: flex;
     max-width: 100%;
     >form {
       background-color: lighten($primary-color, 8);
       border-radius: 10px;
       min-width: 60%;
-      min-height: 100%;
-      margin: auto;
+      min-height: calc(100% - 8em);
+      margin: 4em auto;
       display: flex;
       flex-direction: column;
+      transition: .3s $ease-in-material;
+      &.maximized {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        border-radius: 0;
+      }
+      &.minimized {
+        min-width: fit-content;
+        max-width: fit-content;
+        min-height: fit-content;
+        max-height: fit-content;
+        margin: 0;
+        margin-top: auto;
+        div.form-status-bar {
+          border-bottom-right-radius: inherit;
+          border-bottom-left-radius: inherit;
+          .triangle-down {
+            transform: rotateX(180deg);
+          }
+        }
+        >*:not(.form-status-bar) {
+          display: none !important;
+        }
+      }
+      >div.form-status-bar {
+        width: 100%;
+        height: 22px;
+        display: flex;
+        background-color: $hover-accent-color;
+        border-top-right-radius: inherit;
+        border-top-left-radius: inherit;
+        >ul.action-buttons-wrapper {
+          margin-left: auto;
+          padding: 0 4px;
+          list-style-type: none;
+          display: flex;
+          >li {
+            margin: auto 3px;
+            transition: .2s $ease-in-material;
+            opacity: .5;
+            cursor: pointer;
+            &:not(.triangle-down) {
+              width: 10px;
+              height: 10px;
+              background-color: $text-secondary;
+            }
+            &.circle {
+              border-radius: 50%;
+            }
+            &.triangle-down {
+              border-top: 10px solid $text-secondary;
+              border-right: 6px solid transparent;
+              border-left: 6px solid transparent;
+            }
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+      }
       >div.form-header {
         height: 8em;
         display: flex;
         box-shadow: $dp1;
-        border-radius: 10px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
         background-color: $accent-color;
-        div.clear-form-button-wrapper {
+        >div.form-header-title {
+          color: $text-secondary;
+          text-align: center;
+          margin: auto;
+        }
+        >div.clear-form-button-wrapper {
           position: absolute;
           bottom: -28px;
           left: 2em;
@@ -80,28 +146,39 @@ main {
         border-radius: 10px;
         >div.fields-wrapper {
           margin-bottom: auto;
+          padding: 1em;
           display: flex;
           justify-content: space-between;
           flex-wrap: wrap;
+          border-radius: 10px;
+          box-shadow: $dp1;
           >div.input-wrapper {
-            width: calc(50% - 1em);
+            width: calc(50% - .5em);
             display: flex;
-            flex-direction: column;
-            margin-bottom: 1em;
+            flex-direction: column-reverse;
+            margin-bottom: .5em;
             transition: .3s $ease-in-material;
+            >input {
+              background-color: #fafafa;
+              border-top-right-radius: 10px;
+              border-top-left-radius: 10px;
+            }
             >label {
-              margin-left: 1em;
+              margin: 4px 0 0 1em;
               width: fit-content;
               font-size: .75em;
-              font-weight: bold;
+              opacity: .75;
+              transition: inherit;
+              pointer-events: none;
             }
-            >input {
-              height: 100%;
+            input:not([type="range"]):not(:focus).empty ~ label {
+              opacity: .5;
+              transform: translateY(28px);
             }
           }
         }
         >button[type="submit"] {
-          margin-left: auto;
+          margin: 1.5em 0 0 auto;
           padding: 0 1.5em;
           min-height: 3em;
           max-height: 3em;
@@ -119,17 +196,16 @@ footer {
 }
 input, button {
   border: none;
-  padding: 1em 1.5em;
+  padding: 1em;
   border-radius: 2px;
   height: max-content;
   transition: .3s ease;
-  box-shadow: $dp1;
   &:focus, &:hover {
     outline: none;
-    box-shadow: $normal-card;
   }
 }
 input {
+  background-color: transparent;
   border-bottom: 2px solid lighten($accent-color, 20);
   &:focus, &:hover {
     border-bottom-color: $accent-color;
