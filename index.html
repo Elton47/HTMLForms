@@ -11,22 +11,17 @@
   <body>
     <header>
       <div class="logo-and-title">
-        <img src="data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cGF0aCBkPSJNMjQgMjRIMFYwaDI0djI0eiIgaWQ9ImEiLz4KICAgIDwvZGVmcz4KICAgIDxjbGlwUGF0aCBpZD0iYiI+CiAgICAgICAgPHVzZSBvdmVyZmxvdz0idmlzaWJsZSIgeGxpbms6aHJlZj0iI2EiLz4KICAgIDwvY2xpcFBhdGg+CiAgICA8cGF0aCBjbGlwLXBhdGg9InVybCgjYikiIGQ9Ik0yLjUgNHYzaDV2MTJoM1Y3aDVWNGgtMTN6bTE5IDVoLTl2M2gzdjdoM3YtN2gzVjl6Ii8+Cjwvc3ZnPg==" />
-        <h3>HTMLForms</h3>
+        <i class="material-icons">text_fields</i>
+        <h3>HTML<wbr>Forms</wbr></h3>
       </div>
-      <nav>
-        <ul>
-          <li>Link1</li>
-          <li>Link2</li>
-          <li>Link3</li>
-        </ul>
-      </nav>
     </header>
     <main>
       <div class="main-content">
         <form id="first-form" class="card">
           <div class="form-header">
-            <button id="clear-form-button" class="fab"><i class="material-icons">clear_all</i></button>
+            <div class="clear-form-button-wrapper">
+              <button id="clear-form-button" class="fab danger"><i class="material-icons">clear_all</i></button>
+            </div>
           </div>
           <div class="form-content">
             <div class="fields-wrapper">
@@ -43,7 +38,7 @@
                 <input type="range" required min="1" max="100" value="25" />
               </div>
             </div>
-            <button type="submit" class="fab"><i class="material-icons">check</i>&nbsp;Submit</button>
+            <button type="submit" class="fab primary"><i class="material-icons">check</i>&nbsp;Submit</button>
           </div>
         </form>
       </div>
