@@ -1,14 +1,16 @@
 /* COLORS */
-$background-color: rgb(250, 250, 251);
+$background-color: #fafafb;
 $primary-color: darken($background-color, 5);
-$accent-color: rgb(66, 105, 165);
-$hover-accent-color: rgb(41, 83, 145);
-$warn-color: rgb(220, 97, 65);
-$hover-warn-color: rgb(196, 68, 35);
-$success-color: rgb(57, 130, 90);
-$hover-success-color: rgb(31, 107, 65);
-$light-border-color: rgb(150,150, 150);
-$text: rgb(117, 117, 117);
+$accent-color: #3f51b5;
+$hover-accent-color: #303f9f;
+$danger-color: #e64a19;
+$hover-danger-color: #d84315;
+$success-color: #43a047;
+$hover-success-color: hsl(123, 43%, 39%);
+$warn-color: #ffc107;
+$hover-warn-color: #ffb300;
+$light-border-color: #969696;
+$text: #757575;
 
 /* DIMENSIONS */
 $header-height: 4rem;
