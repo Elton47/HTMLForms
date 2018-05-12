@@ -82,16 +82,11 @@ main {
           justify-content: space-between;
           flex-wrap: wrap;
           >div.input-wrapper {
-            width: 50%;
+            width: calc(50% - 1em);
             display: flex;
             flex-direction: column;
             margin-bottom: 1em;
-            &:nth-child(odd) {
-              padding-right: 1em;
-            }
-            &:nth-child(even) {
-              padding-left: 1em;
-            }
+            transition: .3s $ease-in-material;
             >label {
               margin-left: 1em;
               width: fit-content;
