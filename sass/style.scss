@@ -187,6 +187,23 @@ main {
       }
     }
   }
+  .toast {
+    padding: .75em 1em;
+    border-radius: 10px;
+    bottom: -4em;
+    left: 50%;
+    font-size: small;
+    position: fixed;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    color: $text-secondary;
+    background-color: rgba(black, .65);
+    transition: .3s $ease-in-material;
+    &.shown {
+      bottom: $footer-height;
+    }
+  }
 }
 footer {
   height: $footer-height;
@@ -229,6 +246,13 @@ button {
   cursor: pointer;
   &:focus, &:hover {
     background-color: $hover-accent-color;
+  }
+  >i {
+    transition: .3s $ease-in-material;
+    pointer-events: none;
+    &.done {
+      transform: rotateZ(360deg);
+    }
   }
 }
 .card {
