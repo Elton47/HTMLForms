@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  $('#clear-form-button').on('click', function() { $('#first-form')[0].reset(); });
+  $('#clear-form-button').click(function(e) { clearForm(e, $('#first-form')); });
+  $('#submit-form-button').click(function(e) { submitForm(e, $('#first-form')); });
   $('li[title*="inimize"]').click(function() { minimizeWindow($('#first-form')); }); /* Excluding the first character of "title" attribute, to ignore cases */
   $('li[title*="esize"]').click(function() { resizeWindow($('#first-form')); });
   $('li[title*="lose"]').click(function() { closeWindow($('#first-form')); });
@@ -8,6 +9,23 @@ $(document).ready(function() {
     $(element).blur(function() { checkField(element); });
   });
 });
+function clearForm(e, form) {
+  var fab = $(e.target);
+  var fabIcon = fab.find('i');
+  var fabIconValue = fabIcon.html();
+  fab.css('pointer-events', 'none');
+  fab.addClass('success');
+  fabIcon.addClass('done');
+  fabIcon.html('check');
+  setTimeout(function() {
+    fab.css('pointer-events', 'unset');
+    fab.removeClass('success');
+    fabIcon.removeClass('done');
+    setTimeout(function() { fabIcon.html(fabIconValue); }, 150);
+  }, 4000);
+  form.trigger('reset');
+  toast(4000, 'Cleared', 'check', 'success');
+}
 function closeWindow(e) {
   e.hide('fast', function() {
     e.remove();
@@ -19,8 +37,6 @@ function resizeWindow(e) {
   e.toggleClass('maximized');
 }
 function minimizeWindow(e) {
-  if(e.hasClass('maximized'))
-    e.removeClass('maximized');
   e.toggleClass('minimized');
 }
 function checkField(e) {
@@ -29,4 +45,25 @@ function checkField(e) {
     input.removeClass('empty');
   else
     input.addClass('empty');
+}
+function toast(duration, msg, icon, colorClassName) {
+  var toast = $('.toast');
+  toast.css('background-color', 'rgba(' + colorClassNameToRGB(colorClassName) + ')');
+  if(icon)
+    toast.html('<i class="material-icons">' + icon + '</i>&nbsp;' + msg);
+  else
+    toast.html(msg);
+  toast.addClass('shown');
+  setTimeout(function() {
+    toast.removeClass('shown');
+    setTimeout(function() { /* Empty after animation has finished (after 300ms). */
+      toast.empty();
+    }, 300);
+  }, duration);
+}
+function colorClassNameToRGB(colorClassName) {
+  $('body').append('<div id="fakeDiv" class="' + colorClassName + '"></div'); /* Add dummy div to get rgb color out of class name */
+  var color = $('#fakeDiv').css('background-color').slice(4, -1); /* Removes the rgb and brackets */
+  $('#fakeDiv').remove();
+  return color;
 }
