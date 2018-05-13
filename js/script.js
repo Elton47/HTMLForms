@@ -48,22 +48,15 @@ function checkField(e) {
 }
 function toast(duration, msg, icon, colorClassName) {
   var toast = $('.toast');
-  toast.css('background-color', 'rgba(' + colorClassNameToRGB(colorClassName) + ')');
   if(icon)
     toast.html('<i class="material-icons">' + icon + '</i>&nbsp;' + msg);
   else
     toast.html(msg);
-  toast.addClass('shown');
+  toast.addClass('shown ' + colorClassName);
   setTimeout(function() {
-    toast.removeClass('shown');
+    toast.removeClass('shown ' + colorClassName);
     setTimeout(function() { /* Empty after animation has finished (after 300ms). */
       toast.empty();
     }, 300);
   }, duration);
-}
-function colorClassNameToRGB(colorClassName) {
-  $('body').append('<div id="fakeDiv" class="' + colorClassName + '"></div'); /* Add dummy div to get rgb color out of class name */
-  var color = $('#fakeDiv').css('background-color').slice(4, -1); /* Removes the rgb and brackets */
-  $('#fakeDiv').remove();
-  return color;
 }
