@@ -159,20 +159,23 @@ main {
             margin-bottom: .5em;
             transition: .3s $ease-in-material;
             >input {
-              background-color: #fafafa;
+              background-color: #fdfdfd;
               border-top-right-radius: 10px;
               border-top-left-radius: 10px;
             }
             >label {
-              margin: 4px 0 0 1em;
+              margin-left: 1em;
               width: fit-content;
-              font-size: .75em;
-              opacity: .75;
+              font-size: .7em;
+              font-weight: bold;
+              opacity: .9;
               transition: inherit;
               pointer-events: none;
             }
             input:not([type="range"]):not(:focus).empty ~ label {
               opacity: .5;
+              font-size: .75em;
+              margin-left: 1.5em;
               transform: translateY(28px);
             }
           }
@@ -213,7 +216,7 @@ footer {
 }
 input, button {
   border: none;
-  padding: 1em;
+  padding: 1em 1.5em;
   border-radius: 2px;
   height: max-content;
   transition: .3s ease;
@@ -224,20 +227,27 @@ input, button {
 input {
   background-color: transparent;
   border-bottom: 2px solid lighten($accent-color, 20);
-  &:focus, &:hover {
-    border-bottom-color: $accent-color;
-  }
   &[type="range"] {
     padding-left: 1em;
     padding-right: 1em;
   }
+  &:focus, &:hover {
+    border-bottom-color: $accent-color;
+    ~ label {
+      color: $accent-color;
+    }
+  }
   &:valid {
-    color: $success-color;
     border-bottom-color: $success-color;
+    ~ label {
+      color: $success-color;
+    }
   }
   &:invalid {
-    color: $danger-color;
     border-bottom-color: $danger-color;
+    ~ label {
+      color: $danger-color;
+    }
   }
 }
 button {
