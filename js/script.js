@@ -1,12 +1,14 @@
+var data;
 $(document).ready(function() {
   $('#clear-form-button').click(function(e) { clearForm(e, $('#first-form')); });
   $('#submit-form-button').click(function(e) { submitForm(e, $('#first-form')); });
   $('li[title*="inimize"]').click(function() { minimizeWindow($('#first-form')); }); /* Excluding the first character of "title" attribute, to ignore cases */
   $('li[title*="esize"]').click(function() { resizeWindow($('#first-form')); });
   $('li[title*="lose"]').click(function() { closeWindow($('#first-form')); });
-  Array.from($('input')).forEach(element => { /* Input field labels animation based on empty CSS class for input fields */
-    checkField(element);
-    $(element).blur(function() { checkField(element); });
+  $.getJSON("/js/data.json", function(results) { data = results; });
+  $(document).ajaxSuccess(function() {
+    $('#name-field').val(data.name);
+    checkFields();
   });
 });
 function clearForm(e, form) {
@@ -39,12 +41,19 @@ function resizeWindow(e) {
 function minimizeWindow(e) {
   e.toggleClass('minimized');
 }
-function checkField(e) {
-  var input = $(e);
-  if(input.val() != '')
-    input.removeClass('empty');
-  else
-    input.addClass('empty');
+function checkFields() {
+  Array.from($('input')).forEach(e => { /* Input field labels animation based on empty CSS class for input fields */
+    if($(e).val())
+      $(e).removeClass('empty');
+    else
+      $(e).addClass('empty');
+    $(e).change(function() {
+      if($(e).val())
+        $(e).removeClass('empty');
+      else
+        $(e).addClass('empty');
+    });
+  });
 }
 function toast(duration, msg, icon, colorClassName) {
   var toast = $('.toast');
