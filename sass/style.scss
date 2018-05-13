@@ -286,27 +286,27 @@ button {
   }
 }
 .primary {
-  background-color: $accent-color;
+  background-color: $accent-color !important;
   &:focus, &:hover {
-    background-color: $hover-accent-color;
+    background-color: $hover-accent-color !important;
   }
 }
 .danger {
-  background-color: $danger-color;
+  background-color: $danger-color !important;
   &:focus, &:hover {
-    background-color: $hover-danger-color;
+    background-color: $hover-danger-color !important;
   }
 }
 .warn {
-  background-color: $warn-color;
+  background-color: $warn-color !important;
   &:focus, &:hover {
-    background-color: $hover-warn-color;
+    background-color: $hover-warn-color !important;
   }
 }
 .success {
-  background-color: $success-color;
+  background-color: $success-color !important;
   &:focus, &:hover {
-    background-color: $hover-success-color;
+    background-color: $hover-success-color !important;
   }
 }
 @media (max-width: "720px") {
