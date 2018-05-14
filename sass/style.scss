@@ -79,7 +79,7 @@ main {
           }
         }
         >*:not(.form-status-bar) {
-          display: none !important;
+          display: none;
         }
       }
       >div.form-status-bar {
@@ -286,28 +286,28 @@ button {
     transform: scale(1.025);
   }
 }
-.primary {
-  background-color: $accent-color !important;
+body .primary {
+  background-color: $accent-color;
   &:focus, &:hover {
-    background-color: $hover-accent-color !important;
+    background-color: $hover-accent-color;
   }
 }
-.danger {
-  background-color: $danger-color !important;
+body .danger {
+  background-color: $danger-color;
   &:focus, &:hover {
-    background-color: $hover-danger-color !important;
+    background-color: $hover-danger-color;
   }
 }
-.warn {
-  background-color: $warn-color !important;
+body .warn {
+  background-color: $warn-color;
   &:focus, &:hover {
-    background-color: $hover-warn-color !important;
+    background-color: $hover-warn-color;
   }
 }
-.success {
-  background-color: $success-color !important;
+body .success {
+  background-color: $success-color;
   &:focus, &:hover {
-    background-color: $hover-success-color !important;
+    background-color: $hover-success-color;
   }
 }
 @media (max-width: "720px") {
