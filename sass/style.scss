@@ -166,6 +166,7 @@ main {
             >label {
               margin-left: 1em;
               width: fit-content;
+              min-height: calc(1rem - 2px);
               font-size: .7em;
               font-weight: bold;
               opacity: .9;
