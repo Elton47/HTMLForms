@@ -1,3 +1,4 @@
+/// <reference path="jquery-3.3.1.min.js" />
 var data;
 $(document).ready(function() {
   $('#clear-form-button').click(function(e) { clearForm(e, $('#first-form')); });
