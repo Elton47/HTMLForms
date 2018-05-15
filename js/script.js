@@ -1,8 +1,10 @@
 /// <reference path="_references.js" />
 var data;
 $(document).ready(function() {
+  $('#first-form').submit(function(e) { formOnSubmit(e); }).draggable( { handle: '.form-status-bar' });
   $('#clear-form-button').click(function(e) { clearForm(e, $('#first-form'), 2000); });
   $('#submit-form-button').click(function(e) { submitForm(e, $('#first-form'), 2000); });
+  $('.form-status-bar').on( { 'mousedown' : function(e) { $(e.target.parentElement).addClass('dragged'); }, 'mouseup' : function(e) { $(e.target.parentElement).removeClass('dragged'); } } );
   $('li[title*="inimize"]').click(function() { minimizeWindow($('#first-form')); }); /* Excluding the first character of "title" attribute, to ignore cases */
   $('li[title*="esize"]').click(function() { resizeWindow($('#first-form')); });
   $('li[title*="lose"]').click(function() { closeWindow($('#first-form')); });
@@ -30,11 +32,6 @@ function clearForm(e, form, toastTime) {
   form.trigger('reset');
   toast(toastTime, 'Cleared', 'check', 'success');
 }
-function closeWindow(e) {
-  e.hide('fast', function() {
-    e.remove();
-  });
-}
 function formOnSubmit(e) {
   e.preventDefault();
 }
@@ -54,13 +51,20 @@ function submitForm(e, form, toastTime) {
 function validateForm(form) {
   return form.valid();
 }
-function resizeWindow(e) {
-  if(e.hasClass('minimized'))
-    e.removeClass('minimized');
-  e.toggleClass('maximized');
-}
 function minimizeWindow(e) {
   e.toggleClass('minimized');
+  e.removeClass('maximized');
+  e.removeAttr('style');
+}
+function resizeWindow(e) {
+  e.removeClass('minimized');
+  e.toggleClass('maximized');
+  e.removeAttr('style');
+}
+function closeWindow(e) {
+  e.hide('fast', function() {
+    e.remove();
+  });
 }
 function checkFields() {
   Array.from($('input')).forEach(e => { /* Input field labels animation based on empty CSS class for input fields */
