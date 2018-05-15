@@ -344,6 +344,39 @@ body .success {
     background-color: $hover-success-color;
   }
 }
+input[type="range"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-bottom: none;
+  width: 100%; /* Required for Edge*/
+  margin-top: 8px;
+  padding-right: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  @mixin slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 0;
+    margin-top: -1.25em;
+    background-color: $accent-color;
+    border: .5em solid $accent-color;
+    border-radius: 50% 50% 0 50%;
+    transform: rotateZ(45deg);
+    cursor: pointer;
+  }
+  &::-webkit-slider-thumb { @include slider-thumb; }
+  &::-moz-range-thumb { @include slider-thumb; }
+  &::-ms-thumb { @include slider-thumb; }
+  @mixin slider-track {
+    height: 2px;
+    background-color: lighten($accent-color, 10);
+  }
+  &::-webkit-slider-runnable-track { @include slider-track }
+  &::-moz-range-track { @include slider-track }
+  &::-ms-track { @include slider-track }
+}
 @media (max-width: "720px") {
   body { /* Adding "body" for more precedence of priority. */
     main {
