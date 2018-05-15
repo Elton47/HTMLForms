@@ -58,6 +58,9 @@ main {
       display: flex;
       flex-direction: column;
       transition: .3s $ease-in-material;
+      &.dragged {
+        transition-duration: 0s;
+      }
       &.maximized {
         width: 100%;
         height: 100%;
