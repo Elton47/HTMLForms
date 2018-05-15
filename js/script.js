@@ -1,4 +1,4 @@
-/// <reference path="jquery-3.3.1.min.js" />
+/// <reference path="_references.js" />
 var data;
 $(document).ready(function() {
   $('#clear-form-button').click(function(e) { clearForm(e, $('#first-form')); });
@@ -33,6 +33,23 @@ function closeWindow(e) {
   e.hide('fast', function() {
     e.remove();
   });
+}
+function formOnSubmit(e) {
+  e.preventDefault();
+}
+function submitForm(e, form) {
+  $(form).submit();
+  $(e.target).removeClass('shrinked success danger'); // Remove previous-applied classes.
+  if(validateForm(form)) {
+    $(e.target).addClass('shrinked success').find('>i').html('check');
+    toast(4000, 'Submitted!', 'check', 'success');
+  }
+  else {
+    $(e.target).addClass('shrinked danger').find('>i').html('warning');
+  }
+}
+function validateForm(form) {
+  return form.valid();
 }
 function resizeWindow(e) {
   if(e.hasClass('minimized'))
