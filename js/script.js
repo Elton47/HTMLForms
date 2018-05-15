@@ -1,8 +1,8 @@
 /// <reference path="_references.js" />
 var data;
 $(document).ready(function() {
-  $('#clear-form-button').click(function(e) { clearForm(e, $('#first-form')); });
-  $('#submit-form-button').click(function(e) { submitForm(e, $('#first-form')); });
+  $('#clear-form-button').click(function(e) { clearForm(e, $('#first-form'), 2000); });
+  $('#submit-form-button').click(function(e) { submitForm(e, $('#first-form'), 2000); });
   $('li[title*="inimize"]').click(function() { minimizeWindow($('#first-form')); }); /* Excluding the first character of "title" attribute, to ignore cases */
   $('li[title*="esize"]').click(function() { resizeWindow($('#first-form')); });
   $('li[title*="lose"]').click(function() { closeWindow($('#first-form')); });
@@ -12,10 +12,11 @@ $(document).ready(function() {
     checkFields();
   });
 });
-function clearForm(e, form) {
+function clearForm(e, form, toastTime) {
   var fab = $(e.target);
   var fabIcon = fab.find('i');
   var fabIconValue = fabIcon.html();
+  toastTime = toastTime >= 1000 ? toastTime : 4000;
   fab.css('pointer-events', 'none');
   fab.addClass('success');
   fabIcon.addClass('done');
@@ -25,9 +26,9 @@ function clearForm(e, form) {
     fab.removeClass('success');
     fabIcon.removeClass('done');
     setTimeout(function() { fabIcon.html(fabIconValue); }, 150);
-  }, 4000);
+  }, toastTime);
   form.trigger('reset');
-  toast(4000, 'Cleared', 'check', 'success');
+  toast(toastTime, 'Cleared', 'check', 'success');
 }
 function closeWindow(e) {
   e.hide('fast', function() {
@@ -37,16 +38,18 @@ function closeWindow(e) {
 function formOnSubmit(e) {
   e.preventDefault();
 }
-function submitForm(e, form) {
+function submitForm(e, form, toastTime) {
+  toastTime = toastTime >= 1000 ? toastTime : 4000;
   $(form).submit();
-  $(e.target).removeClass('shrinked success danger'); // Remove previous-applied classes.
   if(validateForm(form)) {
-    $(e.target).addClass('shrinked success').find('>i').html('check');
-    toast(4000, 'Submitted!', 'check', 'success');
+    $(e.target).addClass('shrinked success');
+    toast(toastTime, 'Done!', 'check', 'success');
   }
   else {
     $(e.target).addClass('shrinked danger').find('>i').html('warning');
+    toast(toastTime, 'Failed! Form filled with invalid data!', 'close', 'danger');
   }
+  setTimeout(function() { $(e.target).removeClass('shrinked success danger').find('>i').html('check'); }, toastTime); // Remove previous-applied classes.
 }
 function validateForm(form) {
   return form.valid();
