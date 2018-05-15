@@ -183,10 +183,20 @@ main {
         }
         >button[type="submit"] {
           margin: 1.5em 0 0 auto;
-          padding: 0 1.5em;
-          min-height: 3em;
-          max-height: 3em;
-          width: fit-content;
+          >label {
+            pointer-events: none;
+          }
+          &.shrinked {
+            >label {
+              display: none;
+            }
+          }
+          &:not(.shrinked) {
+            min-height: 3em;
+            padding: 0 1.5em;
+            max-height: 3em;
+            width: fit-content;
+          }
         }
       }
     }
