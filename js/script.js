@@ -9,6 +9,7 @@ $(document).ready(function() {
   });
   $('#clear-form-button').click(function(e) { clearForm(e, $('#first-form'), 2000); });
   $('#submit-form-button').click(function(e) { submitForm(e, $('#first-form'), 2000); });
+  $('.form-status-bar').dblclick(function() { resizeWindow($('#first-form')); });
   $('li[title*="inimize"]').click(function() { minimizeWindow($('#first-form')); }); /* Excluding the first character of "title" attribute, to ignore cases */
   $('li[title*="esize"]').click(function() { resizeWindow($('#first-form')); });
   $('li[title*="lose"]').click(function() { closeWindow($('#first-form')); });
@@ -41,6 +42,7 @@ function formOnSubmit(e) {
 }
 function submitForm(e, form, toastTime) {
   toastTime = toastTime >= 1000 ? toastTime : 4000;
+  $(e.target).css('pointer-events', 'none');
   $(form).submit();
   if(validateForm(form)) {
     $(e.target).addClass('shrinked success');
@@ -50,7 +52,10 @@ function submitForm(e, form, toastTime) {
     $(e.target).addClass('shrinked danger').find('>i').html('warning');
     toast(toastTime, 'Failed! Form filled with invalid data!', 'close', 'danger');
   }
-  setTimeout(function() { $(e.target).removeClass('shrinked success danger').find('>i').html('check'); }, toastTime); // Remove previous-applied classes.
+  setTimeout(function() {
+    $(e.target).removeClass('shrinked success danger').find('>i').html('check');
+    $(e.target).css('pointer-events', 'unset');
+  }, toastTime); // Remove previous-applied classes.
 }
 function validateForm(form) {
   return form.valid();
