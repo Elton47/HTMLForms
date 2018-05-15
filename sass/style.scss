@@ -49,12 +49,13 @@ main {
     background-color: $background-color;
     display: flex;
     max-width: 100%;
+    align-items: center;
+    justify-content: center;
     >form {
       background-color: lighten($primary-color, 8);
       border-radius: 10px;
       min-width: 60%;
       min-height: calc(100% - 8em);
-      margin: 4em auto;
       display: flex;
       flex-direction: column;
       transition: .3s $ease-in-material;
