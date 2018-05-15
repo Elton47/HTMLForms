@@ -213,6 +213,7 @@ main {
     align-items: center;
     color: $text-secondary;
     background-color: rgba(black, .65);
+    transform: translateX(-50%);
     transition: .3s $ease-in-material;
     &.shown {
       bottom: $footer-height;
