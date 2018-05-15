@@ -1,10 +1,14 @@
 /// <reference path="_references.js" />
 var data;
 $(document).ready(function() {
-  $('#first-form').submit(function(e) { formOnSubmit(e); }).draggable( { handle: '.form-status-bar' });
+  $('#first-form').submit(function(e) { formOnSubmit(e); }).draggable( {
+    handle: '.form-status-bar',
+    containment: '.main-content',
+    start: function(e) { $(e.target).addClass('dragged'); },
+    stop: function(e) { $(e.target).removeClass('dragged'); }
+  });
   $('#clear-form-button').click(function(e) { clearForm(e, $('#first-form'), 2000); });
   $('#submit-form-button').click(function(e) { submitForm(e, $('#first-form'), 2000); });
-  $('.form-status-bar').on( { 'mousedown' : function(e) { $(e.target.parentElement).addClass('dragged'); }, 'mouseup' : function(e) { $(e.target.parentElement).removeClass('dragged'); } } );
   $('li[title*="inimize"]').click(function() { minimizeWindow($('#first-form')); }); /* Excluding the first character of "title" attribute, to ignore cases */
   $('li[title*="esize"]').click(function() { resizeWindow($('#first-form')); });
   $('li[title*="lose"]').click(function() { closeWindow($('#first-form')); });
