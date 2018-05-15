@@ -77,6 +77,9 @@ main {
         div.form-status-bar {
           border-bottom-right-radius: inherit;
           border-bottom-left-radius: inherit;
+          >div.status-bar-title {
+            display: none;
+          }
           .triangle-down {
             transform: rotateX(180deg);
           }
@@ -92,6 +95,22 @@ main {
         background-color: $hover-accent-color;
         border-top-right-radius: inherit;
         border-top-left-radius: inherit;
+        &:hover {
+          >div.status-bar-title {
+            opacity: 1;
+          }
+        }
+        >div.status-bar-title {
+          color: $text-secondary;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          opacity: .5;
+          font-size: .8em;
+          transform: translate(-50%, -50%);
+          transition: .3s $ease-in-material;
+          pointer-events: none;
+        }
         >ul.action-buttons-wrapper {
           margin-left: auto;
           padding: 0 4px;
@@ -132,6 +151,7 @@ main {
           color: $text-secondary;
           text-align: center;
           margin: auto;
+          text-shadow: 1px 1px #333;
         }
         >div.clear-form-button-wrapper {
           position: absolute;
