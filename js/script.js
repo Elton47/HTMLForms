@@ -40,25 +40,31 @@ function clearForm(e, form, toastTime) {
 function formOnSubmit(e) {
   e.preventDefault();
 }
-function submitForm(e, form, toastTime) {
-  toastTime = toastTime >= 1000 ? toastTime : 4000;
+function submitForm(e, form, timeOut) {
+  timeOut = timeOut >= 1000 ? timeOut : 4000;
   $(e.target).css('pointer-events', 'none');
   $(form).submit();
   if(validateForm(form)) {
-    $(e.target).addClass('shrinked success');
-    toast(toastTime, 'Done!', 'check', 'success');
+    $(e.target).addClass('success');
+    $(e.target).find('>label').html('&nbsp;Done');
   }
   else {
-    $(e.target).addClass('shrinked danger').find('>i').html('warning');
-    toast(toastTime, 'Failed! Form filled with invalid data!', 'close', 'danger');
+    $(e.target).addClass('danger').find('>i').html('warning');
+    $(e.target).find('>label').html('&nbsp;Failed');
   }
   setTimeout(function() {
     $(e.target).removeClass('shrinked success danger').find('>i').html('check');
+    $(e.target).find('>label').html('&nbsp;Submit');
     $(e.target).css('pointer-events', 'unset');
-  }, toastTime); // Remove previous-applied classes.
+  }, timeOut); // Remove previous-applied classes.
 }
 function validateForm(form) {
-  return form.valid();
+  var valid = form.valid();
+  $('form input').each(function(index, input) {
+    if(!$(input).val())
+      valid = false;
+  });
+  return valid;
 }
 function minimizeWindow(e) {
   e.toggleClass('minimized');
