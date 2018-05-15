@@ -1,7 +1,7 @@
 /// <reference path="_references.js" />
 var data;
 $(document).ready(function() {
-  $('#first-form').submit(function(e) { formOnSubmit(e); }).draggable( {
+  $('#first-form').submit(function(e) { e.preventDefault(); }).draggable( {
     handle: '.form-status-bar',
     containment: '.main-content',
     start: function(e) { $(e.target).addClass('dragged'); },
@@ -36,9 +36,6 @@ function clearForm(e, form, toastTime) {
   }, toastTime);
   form.trigger('reset');
   toast(toastTime, 'Cleared', 'check', 'success');
-}
-function formOnSubmit(e) {
-  e.preventDefault();
 }
 function submitForm(e, form, timeOut) {
   timeOut = timeOut >= 1000 ? timeOut : 4000;
