@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="./css/style.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/jquery.validate.min.js"></script>
     <script src="./js/script.js"></script>
   </head>
   <body>
@@ -17,7 +18,7 @@
     </header>
     <main>
       <div class="main-content">
-        <form id="first-form" class="card">
+        <form id="first-form" class="card" onsubmit="formOnSubmit(event);">
           <div class="form-status-bar">
             <ul class="action-buttons-wrapper">
               <li class="triangle-down" title="Minimize"></li>
@@ -37,7 +38,7 @@
           <div class="form-content">
             <div class="fields-wrapper">
               <div class="input-wrapper">
-                <input type="url" autofocus required pattern="https?://.+" title="https://domain.TLD" />
+                <input type="url" autofocus required pattern="https?://.+" />
                 <label>URL</label>
               </div>
               <div class="input-wrapper">
@@ -53,7 +54,7 @@
                 <label>Range</label>
               </div>
             </div>
-            <button id="submit-form-button" type="submit" class="fab primary"><i class="material-icons">check</i>&nbsp;Submit</button>
+            <button id="submit-form-button" type="submit" class="fab primary"><i class="material-icons">check</i><label>&nbsp;Submit</label></button>
           </div>
         </form>
       </div>
