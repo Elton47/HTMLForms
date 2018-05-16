@@ -233,6 +233,8 @@ main {
             flex-direction: column;
             border-collapse: collapse;
             >thead {
+              border-top-right-radius: 10px;
+              border-top-left-radius: 10px;
               background-color: $accent-color;
               color: $text-secondary;
             }
