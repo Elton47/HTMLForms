@@ -256,6 +256,57 @@ main {
             }
           }
         }
+        div.comments-wrapper {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          margin-top: 1.5em;
+          .comment {
+            flex: 1;
+            display: flex;
+            border-radius: 10px;
+            box-shadow: $dp1;
+            padding: 1rem;
+            &:not(:first-child) {
+              margin-top: 1.5em;
+            }
+            &:nth-child(odd) > .comment-user-circle {
+              background: #fb8c00;
+            }
+            &:nth-child(even) > .comment-user-circle {
+              background: #8e24aa;
+            }
+            &-user-circle {
+              width: 3rem;
+              height: 3rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 16pt;
+              color: $text-secondary;
+              border-radius: 100vw;
+              margin: 0 1rem auto 0;
+            }
+            &-content {
+              flex: 1;
+              display: flex;
+              flex-direction: column;
+              &-info {
+                display: flex;
+                flex-direction: column;
+                .date-time {
+                  color: #757575;
+                }
+              }
+              &-text {
+                margin: .5em 0;
+              }
+              &-actions > i {
+                cursor: pointer;
+              }
+            }
+          }
+        }
       }
     }
   }
